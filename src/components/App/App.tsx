@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 
+import Folder from '../Folder';
+
 import styles from './App.module.scss';
 
 interface AppProps {
@@ -7,5 +9,9 @@ interface AppProps {
 }
 
 export const App: FC<AppProps> = () => {
-  return <div className={styles.wrapper}>Todo App</div>;
+  return (
+    <div className={styles.wrapper}>
+      <Folder />
+    </div>
+  );
 };
