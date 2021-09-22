@@ -1,0 +1,12 @@
+@use "sass:math";
+
+$BASE_FONT: 'Montserrat', -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+  helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+
+/* FONT SIZE */
+$BASE_FONT_SIZE: 10px;
+
+@function rem($size) {
+  $remSize: math.div($size, 10px);
+  @return #{$remSize}rem;
+}
