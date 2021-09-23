@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 
-import styles from './Folder.module.scss';
+import styles from './Folders.module.scss';
 
-interface FolderProps {
+interface FoldersProps {
   className?: string;
 }
 
-export const Folder: FC<FolderProps> = () => {
+export const Folders: FC<FoldersProps> = () => {
   return (
     <aside className={styles.folders}>
       <a href="#!" className={styles.allFolders}>
