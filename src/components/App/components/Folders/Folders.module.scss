@@ -1,9 +1,74 @@
 @import '../../../../styles/main.scss';
 
 .folders {
-  min-width: 250px;
+  width: 100%;
+  max-width: 220px;
   min-height: 100vh;
   padding: 57px 20px 0;
   background-color: $ASIDE_BG;
   border-right: 1px solid $BORDER;
+}
+
+.allBtn {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px 11px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  @include transition(background-color, box-shadow);
+  svg {
+    @include size(18px);
+    margin-right: 6px;
+  }
+  &:hover {
+    background-color: $WHITE;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.allBtnText {
+  @include text(rem(14px), 400, $BLACK);
+  letter-spacing: 0.2px;
+  line-height: 87.5%;
+}
+
+// # FOLDERS LIST
+
+.foldersList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 27px;
+}
+
+// # ADD FOLDER
+
+.addFolder {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  cursor: pointer;
+  svg {
+    @include size(10px);
+    margin-right: 10px;
+    path {
+      @include transition(stroke);
+      stroke: $DARK_GREY;
+    }
+  }
+  &:hover .addFolderText {
+    color: $GREEN;
+  }
+  &:hover path {
+    stroke: $GREEN;
+  }
+}
+
+.addFolderText {
+  display: block;
+  @include text(rem(14px), 500, $DARK_GREY);
+  line-height: 82%;
+  letter-spacing: 0.15px;
+  @include transition(color);
 }

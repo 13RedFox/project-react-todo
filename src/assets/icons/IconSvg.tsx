@@ -2,9 +2,10 @@ import React from 'react';
 
 interface Props {
   id: string;
+  onDelete?: () => void;
 }
 
-const IconSvg = ({ id }: Props) => {
+const IconSvg = ({ id, onDelete }: Props) => {
   switch (id) {
     case 'entypo-list':
       return (
@@ -14,7 +15,7 @@ const IconSvg = ({ id }: Props) => {
       );
     case 'plus':
       return (
-        <svg viewBox="0 0 12 12">
+        <svg viewBox="0 0 12 12" onClick={onDelete}>
           <path
             d="M6 1V11"
             stroke="#868686"
