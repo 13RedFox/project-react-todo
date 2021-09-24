@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import IconSvg from '../../../../../../assets/icons';
@@ -21,6 +21,7 @@ interface ColoredProps {
 export const FoldersPopup: FC<FoldersPopupProps> = ({ closeFoldersPopup }) => {
   const [isSelect, setIsSelect] = useState('#c9d1d3');
   const [inputValue, setInputValue] = useState('');
+  const store = useSelector((state: any) => state.folders);
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -37,10 +38,12 @@ export const FoldersPopup: FC<FoldersPopupProps> = ({ closeFoldersPopup }) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const newFolder = {
       name: inputValue,
       color: isSelect,
       isActive: false,
+      id: store.length,
       todos: [],
     };
 

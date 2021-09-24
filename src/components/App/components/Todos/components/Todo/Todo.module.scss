@@ -1,0 +1,107 @@
+@import '../../../../../../styles/main.scss';
+
+.todo {
+  display: flex;
+  flex-direction: column;
+}
+
+.todoTitle {
+  @include text(rem(32px), 600, $N2);
+  line-height: 82%;
+  border-bottom: 1px solid $BORDER;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+// # TODO LIST
+
+.todoList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.todoItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  &:hover .todoMarker {
+    background-color: $ASIDE_BG;
+    border-color: transparent;
+  }
+  &:hover svg {
+    opacity: 1;
+  }
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.todoMarker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include size(20px, true);
+  @include transition(background-color, border-color);
+  margin-right: 15px;
+  background-color: $WHITE;
+  border: 2px solid $GRAY;
+  svg {
+    @include size(13px);
+    @include transition(opacity);
+    opacity: 0;
+
+    path {
+      stroke: $GRAY;
+    }
+  }
+}
+
+.done {
+  background-color: $GREEN;
+  border-color: transparent;
+  svg {
+    opacity: 1;
+    path {
+      stroke: $WHITE;
+    }
+  }
+}
+
+.todoDescription {
+  @include text(rem(16px), 500, $BLACK);
+  line-height: 84%;
+}
+
+// # NEW TODO
+
+.todoBtn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover path {
+    stroke: $GREEN;
+  }
+  &:hover .todoBtnDescr {
+    color: $GREEN;
+  }
+  svg {
+    @include size(16px);
+    margin-right: 20px;
+    path {
+      @include transition(stroke);
+      stroke: $LIGHT_GRAY;
+    }
+  }
+}
+
+.todoBtnDescr {
+  @include text(rem(16px), 500, $LIGHT_GRAY);
+  @include transition(color);
+  line-height: 84%;
+  letter-spacing: 0.15px;
+}

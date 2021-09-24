@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import IconSvg from '../../../../assets/icons';
+import { setFolderAction } from '../../../../store/actions/actions';
 import FoldersItem from './components/FoldersItem';
 import FoldersPopup from './components/FoldersPopup';
 
@@ -15,16 +16,25 @@ export const Folders: FC<FoldersProps> = () => {
   const [showFoldersPopup, setShowFoldersPopup] = useState(false);
 
   const store = useSelector((state: any) => state);
+  const dispatch = useDispatch();
 
   const folders = store.folders;
-  console.log(folders);
 
   const showAllFolders = () => {
-    console.log('Show all folders');
+    // console.log('Show all folders');
+  };
+
+  const isActiveFolder = (id: number) => {
+    const isActiveItem = [...folders];
+
+    isActiveItem.forEach((item: any) => {
+      item.id === id ? (item.isActive = true) : (item.isActive = false);
+    });
+
+    dispatch(setFolderAction(isActiveItem));
   };
 
   const addNewFolder = () => {
-    console.log('Add New Folder');
     setShowFoldersPopup(true);
   };
 
@@ -36,8 +46,8 @@ export const Folders: FC<FoldersProps> = () => {
       </button>
 
       <ul className={styles.foldersList}>
-        {(folders || []).map((item: any) => (
-          <FoldersItem item={item} key={item.color} />
+        {(folders || []).map((item: any, idx: number) => (
+          <FoldersItem item={item} key={idx} isActiveFolder={isActiveFolder} />
         ))}
       </ul>
 

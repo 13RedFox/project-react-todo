@@ -13,6 +13,20 @@ export const addFolderAction = (payload: any) => {
   };
 };
 
+export const setFolderAction = (payload: any) => {
+  return {
+    type: SET_FOLDER,
+    payload: payload,
+  };
+};
+
+export const removeFolderAction = (payload: any) => {
+  return {
+    type: REMOVE_FOLDER,
+    payload: payload,
+  };
+};
+
 export const addTodoAction = (payload: any, id: number) => {
   return {
     type: ADD_TODO,
