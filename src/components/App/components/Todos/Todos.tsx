@@ -10,7 +10,7 @@ interface TodosProps {
 export const Todos: FC<TodosProps> = () => {
   return (
     <main className={styles.todos}>
-      <Todo title="Products" />
+      <Todo />
     </main>
   );
 };

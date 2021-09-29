@@ -17,8 +17,8 @@ export const db = [
     isActive: false,
     color: '#42b883',
     todos: [
-      { name: 'Изучить JavaScript1', id: 1, isDone: false },
-      { name: 'Изучить JavaScript2', id: 2, isDone: false },
+      { name: 'Изучить JavaScript3', id: 1, isDone: false },
+      { name: 'Изучить JavaScript4', id: 2, isDone: false },
     ],
   },
 ];
@@ -32,9 +32,10 @@ export const folderReducer = (state = db, action: any) => {
       return action.payload;
     }
     case REMOVE_FOLDER: {
-      const newArr = [...action.payload];
-      return newArr;
+      // const newArr = [...action.payload];
+      // return newArr;
       // return action.payload;
+      return action.payload;
     }
     case ADD_TODO: {
       return null;

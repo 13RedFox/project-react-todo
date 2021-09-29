@@ -1,9 +1,9 @@
+import classNames from 'classnames';
 import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import IconSvg from '../../../../assets/icons';
-import { setFolderAction } from '../../../../store/actions/actions';
-import FoldersItem from './components/FoldersItem';
+import { removeFolderAction, setFolderAction } from '../../../../store/actions/actions';
 import FoldersPopup from './components/FoldersPopup';
 
 import styles from './Folders.module.scss';
@@ -38,16 +38,33 @@ export const Folders: FC<FoldersProps> = () => {
     setShowFoldersPopup(true);
   };
 
+  const onDeleteItem = (idx: number) => {
+    const removeItem = folders.splice(idx, 1);
+
+    dispatch(removeFolderAction(removeItem));
+  };
+
   return (
     <aside className={styles.folders}>
-      <button className={styles.allBtn} onClick={showAllFolders}>
-        <IconSvg id="entypo-list" />
-        <span className={styles.allBtnText}>Все задачи</span>
-      </button>
+      {folders.length > 0 ? (
+        <button className={styles.allBtn} onClick={showAllFolders}>
+          <IconSvg id="entypo-list" />
+          <span className={styles.allBtnText}>Все задачи</span>
+        </button>
+      ) : null}
 
       <ul className={styles.foldersList}>
         {(folders || []).map((item: any, idx: number) => (
-          <FoldersItem item={item} key={idx} isActiveFolder={isActiveFolder} />
+          <li
+            className={classNames(styles.item, { [styles.active]: item.isActive })}
+            key={idx}
+            onClick={() => isActiveFolder(item.id)}>
+            <div className={styles.marker} style={{ backgroundColor: item.color }} />
+            <span className={styles.itemText}>{item.name}</span>
+            <IconSvg id="plus" onDelete={() => onDeleteItem(idx)} />
+          </li>
+
+          // <FoldersItem item={item} key={idx} isActiveFolder={isActiveFolder} />
         ))}
       </ul>
 
